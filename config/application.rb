@@ -15,7 +15,8 @@ module Airbnb
       g.test_framework :rspec,
         fixtures: false,
         view_specs: false,
-        helpers_specs: false,
+        helper_specs: false,
+        controller_specs: false,
         routing_specs: false
     end
   end
