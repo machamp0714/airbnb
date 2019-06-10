@@ -1,0 +1,6 @@
+= form_with url: login_path, class: 'form-signin', id: 'session' do |form|
+  .form-group
+    = form.text_field :email, placeholder: 'メールアドレス', class: 'form-control'
+  .form-group
+    = form.password_field :password, placeholder: 'パスワード', class: 'form-control'
+  = form.submit 'ログイン', class: 'btn btn-primary', id: 'login-button'
