@@ -16,7 +16,7 @@ jobs:
           command: sleep 1
       - run:
           name: setup database
-          command: docker-compose run web rails db:create db:schema.load
+          command: docker-compose run web rails db:create db:schema:load
       - run:
           name: test
           command: docker-compose run web bin/rspec
