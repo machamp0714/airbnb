@@ -46,4 +46,9 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  it 'ダイジェストが存在しない場合、authenticated?はfalseを返す事' do
+    user.save
+    expect(user.authenticated?(' ')).to be_falsey
+  end
 end
