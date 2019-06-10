@@ -1,0 +1,9 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  = link_to 'Airbnb', root_path, class: 'navbar-brand'
+  button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbar'
+    span.navbar-toggler-icon
+
+  .collapse.navbar-collapse#navbar
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        = link_to '新規登録', new_user_path, class: 'nav-link' 
