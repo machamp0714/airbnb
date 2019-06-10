@@ -12,6 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/mysql-data
 
 # Ignore uploaded files in development
 /storage/*

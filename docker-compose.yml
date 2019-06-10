@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD
+  web:
+    build: .
+    environment:
+      - MYSQL_ROOT_PASSWORD
+    tty: true
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+volumes:
+  mysql-data:
+    driver: local
