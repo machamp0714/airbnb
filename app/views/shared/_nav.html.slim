@@ -1,15 +1,19 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-  = link_to 'Airbnb', root_path, class: 'navbar-brand'
-  button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbar'
-    span.navbar-toggler-icon
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container
+    = link_to 'Airbnb', root_path, class: 'navbar-brand'
+    button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbar'
+      span.navbar-toggler-icon
 
-  .collapse.navbar-collapse#navbar
-    ul.navbar-nav.ml-auto
-      - if signed_in?
-        li.nav-item
-          = link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
-      - else
-        li.nav-item
-          = link_to '新規登録', new_user_path, class: 'nav-link'
-        li.nav-item
-          = link_to 'ログイン', login_path, class: 'nav-link' 
+    .collapse.navbar-collapse#navbar
+      ul.navbar-nav.ml-auto
+        - if signed_in?
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle#navDropdown href="#" role="button" data-toggle="dropdown" #{current_user.email}
+            .dropdown-menu
+              = link_to 'プロフィール編集', edit_user_path(current_user), class: 'dropdown-item'
+              = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
+        - else
+          li.nav-item
+            = link_to '新規登録', new_user_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'ログイン', login_path, class: 'nav-link' 
