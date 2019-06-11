@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       login user
-      remember user
+      params[:remember_me] == 1 ? remember(user) : forget(user)
       flash[:success] = 'ログインしました。'
       redirect_to root_path
     else
