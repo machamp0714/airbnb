@@ -4,10 +4,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_param)
-    if user.save
-      login user
-      flash[:success] = '登録が完了しました。'
+    @user = User.new(user_param)
+    if @user.save
+      UserMailer.account_activation(@user).deliver_now
+      login @user
+      flash[:success] = 'まだ登録は完了していません。アカウントの有効化をしてください。'
       redirect_to root_path
     else
       render :new
