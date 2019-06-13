@@ -1,2 +1,6 @@
-h1 User#account_activation
-p = @greeting + ", find me in app/views/user_mailer/account_activation.html.slim"
+h1 Airbnb
+p = 'Hi' + @user.name
+
+p Welcome to Airbnb! Click on the below to activate your account:
+
+= link_to edit_account_activation_path(@user.activation_token, email: @user.email) 
