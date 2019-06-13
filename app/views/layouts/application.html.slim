@@ -9,6 +9,5 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'shared/nav'
-    - flash.each do |message_type, message|
-      = tag.div message, class: "alert alert-#{message_type}"
+    = render 'shared/message'
     = yield
