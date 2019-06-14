@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_param)
     if @user.save
-      UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
       flash[:notice] = 'まだ登録は完了していません。アカウントの有効化をしてください。'
       redirect_to root_path
     else
