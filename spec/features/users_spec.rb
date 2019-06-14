@@ -12,7 +12,6 @@ RSpec.feature 'users', type: :feature do
     expect {
       click_on '登録'
     }.to change(User, :count).by(1)
-    # expect(page).to have_content '登録が完了しました。'
     expect(current_path).to eq root_path
   end
 end
