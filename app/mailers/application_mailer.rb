@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'airbnb.noreplay@example.com'
+  default from: 'no-reply-airbnb@example.com'
   layout 'mailer'
 end
