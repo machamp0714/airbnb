@@ -1,0 +1,17 @@
+body {
+  color: #565a5c;
+  background-color: #F8F8F8;
+  font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+a {
+  color: #565a5c;
+  &:hover {
+    color: #c4c4c4;
+  }
+}
+.container {
+  width: 80%;
+}
+.text-babu, .icon-babu {
+  color: #00A699;
+}

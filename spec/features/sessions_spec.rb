@@ -9,9 +9,12 @@ RSpec.feature 'sessions', type: :feature do
     expect(page).to have_current_path(root_path)
   end
 
-  scenario 'ログアウトできる事' do
+  scenario 'ログアウトできる事', js: true do
     sign_in_as user
-    click_link 'ログアウト'
+    sleep 5
+    find('#navDropdown').click
+    click_link 'Logout'
     expect(page).to have_current_path(root_path)
+    expect(page).to have_content 'ログアウトしました。'
   end
 end
