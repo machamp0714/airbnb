@@ -22,6 +22,8 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
+ 
+
   private
     def user_param
       params.require(:user).permit(:name, :email, :password)

@@ -6,7 +6,7 @@
   
   .col-md-9.text-center
     .container
-      = form_with model: @user, method: :put do |form|
+      = form_with model: @user, method: :put, url: user_path(current_user) do |form|
         .form-group
           = form.text_field :name, autofocus: true, placeholder: 'ユーザー名', class: 'form-control'
 
