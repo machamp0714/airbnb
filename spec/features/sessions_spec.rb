@@ -11,7 +11,7 @@ RSpec.feature 'sessions', type: :feature do
 
   scenario 'ログアウトできる事' do
     sign_in_as user
-    click_link 'ログアウト'
+    click_link 'Logout'
     expect(page).to have_current_path(root_path)
   end
 end

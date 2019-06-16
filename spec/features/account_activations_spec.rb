@@ -15,7 +15,7 @@ RSpec.feature 'AccountActivations', type: :feature do
 
     scenario 'ユーザー登録の際、メールが送信され、アカウントを有効化出来ること', js: true do
       visit root_path
-      click_link '新規登録'
+      click_link 'Sign Up'
       fill_in 'ユーザー名', with: user.name
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password

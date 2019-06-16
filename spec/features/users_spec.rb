@@ -5,7 +5,7 @@ RSpec.feature 'users', type: :feature do
 
   scenario 'ユーザー登録できる事', js: true do
     visit root_path
-    click_link '新規登録'
+    click_link 'Sign Up'
     expect {
       fill_in 'ユーザー名', with: user.name
       fill_in 'メールアドレス', with: user.email
