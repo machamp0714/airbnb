@@ -19,7 +19,5 @@ FactoryBot.define do
     name { 'not-activated' }
     email { 'not.activated@email.com' }
     password { 'password' }
-    activated { false }
-    activated_at { nil }
   end
 end
