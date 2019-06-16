@@ -10,7 +10,9 @@ nav.navbar.navbar-expand-lg.navbar-default
         - if signed_in?
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle#navDropdown href="#" role="button" data-toggle="dropdown" 
-              = image_tag avatar_url(current_user), class: 'avatar-circle avatar-small'
+              = image_tag avatar_url(current_user), class: 'avatar-circle avatar-small avatar-margin'
+              span
+                = current_user.name
             .dropdown-menu
               = link_to 'Edit profile', edit_user_path(current_user), class: 'dropdown-item'
               = link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item'
