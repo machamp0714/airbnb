@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       if user.activated?
         login user
-        params[:remember_me] == 1 ? remember(user) : forget(user)
+        remember user if params[:remember_me] == '1'
         flash[:success] = 'ログインしました。'
         redirect_to root_path
       else
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         redirect_to root_path
       end
     else
-      flash.now[:danger] = 'メールアドレスかパスワードのどちらかに誤りがあります。'
+      flash.now[:alert] = 'メールアドレスかパスワードのどちらかに誤りがあります。'
       render :new
     end
   end
