@@ -27,7 +27,6 @@ RSpec.feature 'users', type: :feature do
     fill_in '電話番号', with: '090-1234-5678'
     fill_in '自己紹介', with: 'hello!'
     fill_in 'メールアドレス', with: 'risa@gmail.com'
-    fill_in 'パスワード', with: 'hogehoge'
     click_on 'Save'
     expect(page).to have_content 'Success!!'
   end
