@@ -5,6 +5,16 @@ Rails.application.routes.draw do
 
   resources :users
   resources :account_activations, only: [:edit]
+  resources :rooms, only: [:index, :new, :create, :update] do
+    member do
+      get :listing
+      get :pricing
+      get :description
+      get :photo_upload
+      get :amenities
+      get :location
+    end
+  end
 
   root 'pages#top'
 end
