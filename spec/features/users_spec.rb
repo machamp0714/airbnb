@@ -20,7 +20,7 @@ RSpec.feature 'users', type: :feature do
 
   scenario 'プロフィールを編集できること', js: true do
     sign_in_as alice
-    sleep 5.5
+    sleep 5
     find('#navDropdown').click
     click_link 'Edit profile'
     fill_in 'ユーザー名', with: 'risa'
