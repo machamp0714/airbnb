@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :account_activations, only: [:edit]
-  resources :rooms, only: [:index, :new, :create, :update] do
+  resources :rooms, except: [:edit] do
     member do
       get :listing
       get :pricing
