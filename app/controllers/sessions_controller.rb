@@ -5,12 +5,17 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
-      login user
-      params[:remember_me] == 1 ? remember(user) : forget(user)
-      flash[:success] = 'ログインしました。'
-      redirect_to root_path
+      if user.activated?
+        login user
+        remember user if params[:remember_me] == '1'
+        flash[:success] = 'ログインしました。'
+        redirect_to root_path
+      else
+        flash[:alert] = 'アカウントは有効ではありません。'
+        redirect_to root_path
+      end
     else
-      flash.now[:danger] = 'メールアドレスかパスワードのどちらかに誤りがあります。'
+      flash.now[:alert] = 'メールアドレスかパスワードのどちらかに誤りがあります。'
       render :new
     end
   end
