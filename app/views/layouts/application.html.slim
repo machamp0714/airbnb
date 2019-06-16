@@ -7,7 +7,10 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
   body
     = render 'shared/nav'
     = render 'shared/message'
-    = yield
+    
+    .container
+      = yield
