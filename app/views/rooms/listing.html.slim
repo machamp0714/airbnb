@@ -3,7 +3,7 @@
     = render 'room_menu'
   .col-md-9
     .container
-      = form_with model: @room do |form|
+      = form_with model: @room, local: true do |form|
         .row
           .col-md-4.select
             .form-group

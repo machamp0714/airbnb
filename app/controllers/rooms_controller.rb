@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to listing_room_path(@room), notice: 'Saved...'
     else
-      flash[:alert] = 'Something wen wrong...'
+      flash.now[:alert] = 'Something wen wrong...'
       render :new
     end
   end

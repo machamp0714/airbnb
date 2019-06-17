@@ -3,11 +3,11 @@
     = render 'room_menu'
   .col-md-9
     .container
-      = form_with model: @room do |form|
+      = form_with model: @room, local: true do |form|
         .row
           .form-group
             = form.label :price, 'Pricing'
-            = form.text_field :price, placeholder: 'eg: $100', class: 'form-control'
+            = form.text_field :price, placeholder: 'eg: $100', class: 'form-control', required: true
 
         .text-center
           = form.submit 'Save', class: 'btn btn-form'
