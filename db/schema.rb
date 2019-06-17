@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_16_054409) do
+ActiveRecord::Schema.define(version: 2019_06_16_131524) do
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "home_type"
+    t.string "room_type"
+    t.integer "accommodate"
+    t.integer "bed_room"
+    t.integer "bath_room"
+    t.string "listing_name"
+    t.text "summary"
+    t.string "address"
+    t.boolean "is_tv"
+    t.boolean "is_kitchen"
+    t.boolean "is_air"
+    t.boolean "is_heating"
+    t.boolean "is_internet"
+    t.integer "price"
+    t.boolean "active"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -29,4 +51,5 @@ ActiveRecord::Schema.define(version: 2019_06_16_054409) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "rooms", "users"
 end
