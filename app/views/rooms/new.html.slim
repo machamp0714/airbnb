@@ -14,16 +14,16 @@
       .col-md-4.select
         .form-group
           = form.label :accommodate, 'Accommodate'
-          = form.select :accommodate_type, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], id: 'accommodate', prompt: 'Select...', class: 'form-control'
+          = form.select :accommodate, [['1', 1], ['2', 2], ['3', 3], ['4+', 4]], id: 'accommodate', prompt: 'Select...', class: 'form-control'
 
       .col-md-4.select
         .form-group
           = form.label :bed_room, 'Bed Rooms'
-          = form.select :bed_room, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], id: 'bed_room', prompt: 'Select...', class: 'form-control'
+          = form.select :bed_room, [['1', 1], ['2', 2], ['3', 3], ['4+', 4]], id: 'bed_room', prompt: 'Select...', class: 'form-control'
 
       .col-md-4.select
         .form-group
           = form.label :bath_room, 'Bath Rooms'
-          = form.select :bath_room, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], id: 'bath_room', prompt: 'Select...', class: 'form-control'
+          = form.select :bath_room, [['1', 1], ['2', 2], ['3', 3], ['4+', 4]], id: 'bath_room', prompt: 'Select...', class: 'form-control'
     
     = form.submit 'Create My Room', class: 'btn btn-normal'

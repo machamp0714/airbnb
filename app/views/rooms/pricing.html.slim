@@ -1,2 +1,13 @@
-h1 Room#pricing
-p Find me in app/views/room/pricing.html.slim
+.row
+  .col-md-3
+    = render 'room_menu'
+  .col-md-9
+    .container
+      = form_with model: @room do |form|
+        .row
+          .form-group
+            = form.label :price, 'Pricing'
+            = form.text_field :price, placeholder: 'eg: $100', class: 'form-group'
+
+          .text-center
+            = form.submit 'Save', class: 'btn btn-form'

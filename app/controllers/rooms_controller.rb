@@ -12,7 +12,8 @@ class RoomsController < ApplicationController
   def create
     @room = current_user.rooms.build(room_params)
     if @room.save
-      redirect_to listing_room_path(@room), notice: 'Saved...'
+      flash[:notice] = "Saved..."
+      redirect_to listing_room_path(@room)
     else
       render :new, notice: 'Something went wrong...'
     end

@@ -1,2 +1,13 @@
-h1 Room#location
-p Find me in app/views/room/location.html.slim
+.row
+  .col-md-3
+    = render 'room_menu'
+  .col-md-9
+    .container
+      = form_with model: @room do |form|
+        .row
+          .form-group
+            = form.label :address, 'Address'
+            = form.text_field :address, placeholder: '住所', class: 'form-control'
+
+          .text-center
+            = form.submit 'Save', class: 'btn btn-form'

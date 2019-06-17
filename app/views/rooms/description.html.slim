@@ -1,2 +1,18 @@
-h1 Room#description
-p Find me in app/views/room/description.html.slim
+.row
+  .col-md-3
+    = render 'room_menu'
+  .col-md-9
+    .container
+      = form_with model: @room do |form|
+        .row
+          .form-group
+            = form.label :listing_name, 'Listing name'
+            = form.text_field :listing_name, placeholder: 'What is your listing name?', class: 'form-group'
+          
+          .form-group
+            = form.label :summary, 'Summary'
+            = form.text_area :summary, rows: 5, placeholder: 'Summary of your house', class: 'form-group'
+
+          .text-center
+            = form.submit 'Save', class: 'btn btn-form'
+        

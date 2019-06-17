@@ -1,2 +1,25 @@
-h1 Room#amenities
-p Find me in app/views/room/amenities.html.slim
+.row
+  .col-md-3
+    = render 'room_menu'
+  .col-md-9
+    .container
+      = form_with model: @room do |form|
+        .row.form-group
+          .col-md-4
+            = form.check_box :is_tv 
+          
+          .col-md-4
+            = form.check_box :is_kitchen
+
+          .col-md-4
+            = form.check_box :is_internet 
+
+        .row.form-group
+          .col-md-4
+            = form.check_box :is_heating 
+          
+          .col-md-4
+            = form.check_box :is_air
+
+        .text-center
+          = form.submit 'Save', class: 'btn btn-form'
