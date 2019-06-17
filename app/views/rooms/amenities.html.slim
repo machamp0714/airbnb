@@ -6,20 +6,25 @@
       = form_with model: @room do |form|
         .row.form-group
           .col-md-4
-            = form.check_box :is_tv 
+            = form.check_box :is_tv, class: 'form-check-input'
+            | TV
           
           .col-md-4
-            = form.check_box :is_kitchen
+            = form.check_box :is_kitchen, class: 'form-check-input'
+            | Kitchen
 
           .col-md-4
-            = form.check_box :is_internet 
+            = form.check_box :is_internet, class: 'form-check-input'
+            | Internet
 
         .row.form-group
           .col-md-4
-            = form.check_box :is_heating 
+            = form.check_box :is_heating, class: 'form-check-input'
+            | Heating
           
           .col-md-4
-            = form.check_box :is_air
+            = form.check_box :is_air, class: 'form-check-input'
+            | AirConditioning
 
         .text-center
           = form.submit 'Save', class: 'btn btn-form'

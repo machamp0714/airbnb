@@ -7,12 +7,11 @@
         .row
           .form-group
             = form.label :listing_name, 'Listing name'
-            = form.text_field :listing_name, placeholder: 'What is your listing name?', class: 'form-group'
-          
+            = form.text_field :listing_name, placeholder: 'What is your listing name?', class: 'form-control'
+        .row  
           .form-group
             = form.label :summary, 'Summary'
-            = form.text_area :summary, rows: 5, placeholder: 'Summary of your house', class: 'form-group'
+            = form.text_area :summary, rows: 5, placeholder: 'Summary of your house', class: 'form-control'
 
-          .text-center
-            = form.submit 'Save', class: 'btn btn-form'
-        
+        .text-center
+          = form.submit 'Save', class: 'btn btn-form'
