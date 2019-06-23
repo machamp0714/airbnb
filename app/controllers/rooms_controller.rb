@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, except: [:index, :new, :create]
+  before_action :authenticate_user, except: [:show]
+  before_action :correct_user, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update]
 
   def index
     @rooms = current_user.rooms
@@ -32,6 +34,8 @@ class RoomsController < ApplicationController
   end
 
   def photo_upload
+    @photo = @room.photos.build
+    @photos = @room.photos
   end
 
   def amenities
@@ -57,5 +61,10 @@ class RoomsController < ApplicationController
 
     def room_params
       params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_air, :is_heating, :is_internet, :is_kitchen, :price, :active)
+    end
+
+    def correct_user
+      room = Room.find(params[:id])
+      redirect_to root_path, alert: "You don't have permission." if room.user_id != current_user.id
     end
 end

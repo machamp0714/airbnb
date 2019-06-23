@@ -10,6 +10,9 @@ services:
     build: .
     environment:
       - MYSQL_ROOT_PASSWORD
+      - CHIRORU_ACCESS_ID
+      - CHIRORU_SECRET_KEY
+      - CHIRORU_REGION
     tty: true
     ports:
       - '3000:3000'

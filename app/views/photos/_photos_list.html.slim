@@ -1,0 +1,4 @@
+- if @photos.count > 0
+  .row
+    - @photos.each do |photo|
+      = image_tag photo.image_url, class: 'room-photo-size'
