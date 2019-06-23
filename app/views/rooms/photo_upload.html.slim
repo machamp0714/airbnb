@@ -5,3 +5,13 @@
     .container
       .row
         .col-md-offset-3.col-md-6
+          = form_with model: @photo, url: room_photos_path(@room), local: true do |form|
+            .row
+              .form-group
+                span.btn.btn-default.btn-file.text-babu
+                  | Select Photos
+                  = form.file_field :images
+            .text-center
+              = form.submit 'Add Photos', class: 'btn btn-form'
+      #photos
+        = render 'photos/photos_list'

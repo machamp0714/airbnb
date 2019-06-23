@@ -1,0 +1,7 @@
+- if @photos.count > 0
+  .row
+    - @photos.each do |photo|
+      .col-md-4
+        .panel.panel-default
+          .panel-heading.preview
+            = image_tag photo.image_url
