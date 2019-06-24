@@ -1,13 +1,35 @@
 ul.sidebar-link
   li.sidebar-item
     = link_to 'Listing', listing_room_path, class: 'sidebar-link active'
+    - if !@room.blank?
+      span.pull-right.text-babu
+        i.fa.fa-check
   li.sidebar-item
     = link_to 'Pricing', pricing_room_path, class: 'sidebar-link active'
+    - if !@room.price.blank?
+      span.pull-right.text-babu
+        i.fa.fa-check
   li.sidebar-item
     = link_to 'Description', description_room_path, class: 'sidebar-link active'
+    - if !@room.listing_name.blank?
+      span.pull-right.text-babu
+        i.fa.fa-check
   li.sidebar-item
     = link_to 'Photos', photo_upload_room_path, class: 'sidebar-link active'
+    - if !@room.photos.blank?
+      span.pull-right.text-babu
+        i.fa.fa-check
   li.sidebar-item
     = link_to 'amenities', amenities_room_path, class: 'sidebar-link active'
+    span.pull-right.text-babu
+      i.fa.fa-check
   li.sidebar-item
     = link_to 'Location', location_room_path, class: 'sidebar-link active'
+    - if !@room.address.blank?
+      span.pull-right.text-babu
+        i.fa.fa-check
+hr/
+
+= form_with model: @room, local: true do |form|
+  = form.hidden_field :active, value: true
+  = form.submit 'Publish', id: 'publish_button', class: 'btn btn-normal btn-block', disabled: !@room.is_ready?

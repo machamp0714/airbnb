@@ -45,7 +45,10 @@ class RoomsController < ApplicationController
   end
 
   def update
-    if @room.update(room_params)
+    new_params = room_params
+    new_params = room_params.merge(active: true) if is_ready_room
+
+    if @room.update(new_params)
       flash[:notice] = 'Saved...'
     else
       flash[:notice] = 'Something went wrong...'
@@ -66,5 +69,9 @@ class RoomsController < ApplicationController
     def correct_user
       room = Room.find(params[:id])
       redirect_to root_path, alert: "You don't have permission." if room.user_id != current_user.id
+    end
+
+    def is_ready_room
+      !@room.active && !@room.price.blank? && !@room.listing_name.blank? && !@room.photos.blank? && !@room.address.blank?
     end
 end
