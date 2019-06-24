@@ -8,7 +8,7 @@ class Room < ApplicationRecord
   validates :bed_room, presence: true
   validates :bath_room, presence: true
 
-  def amenities?
-    is_tv? && is_kitchen? && is_air? && is_heating? && is_internet?
+  def is_ready?
+    !active && !price.blank? && !listing_name.blank? && !photos.blank? && !address.blank?
   end
 end
