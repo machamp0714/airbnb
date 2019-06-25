@@ -8,15 +8,15 @@
   .col-md-9
     .panel.panel-default
       .panel-heading
-        Listings
+        | Listings
       .panel-body
         - @rooms.each do |room|
-          .row
-            .col-md-2
+          .roomsWrapper
+            .roomsWrapper_image
               = image_tag room.cover_photo(:thumb)
-            .col-md-7
+            .roomsWpaeer_name
               h4
                 = room.listing_name
-            .col-md-3.right
+            .roomsWrapper_button
               = link_to 'Update', listing_room_path(room), class: 'btn btn-form'
           hr/

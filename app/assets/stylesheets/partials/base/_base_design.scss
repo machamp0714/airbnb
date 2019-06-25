@@ -9,14 +9,31 @@ a {
     color: #c4c4c4;
   }
 }
+h4 {
+  font-size: 18px;
+}
 .container {
   width: 80%;
 }
 .text-babu, .icon-babu {
-  color: #00A699;
+  color: $thema_color;
 }
 .room-photo-size {
   width: 300px;
   height: 300px;
   border-radius: 3px;
+}
+.panel {
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+}
+.panel-heading {
+  font-size: 20px;
+  color: #fff;
+  background-color: $thema_color;
+  padding: 10px 12px;
+}
+.panel-body {
+  padding: 15px 12px;
 }

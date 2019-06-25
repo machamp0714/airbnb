@@ -1,3 +1,12 @@
 .sidebar-item {
   list-style: none;
 }
+.roomsWrapper {
+  display: flex;
+}
+.roomsWrapper_image {
+  margin-right: 10px;
+}
+.roomsWrapper >:last-child {
+  margin-left: auto;
+}
