@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -7,10 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:notice] = 'まだ登録は完了していません。アカウントの有効化をしてください。'
+      flash[:notice] = "まだ登録は完了していません。アカウントの有効化をしてください。"
       redirect_to root_path
     else
-      render :new
+      render "new"
     end
   end
 
@@ -21,14 +23,14 @@ class UsersController < ApplicationController
   def edit
     @user = User.find_by(id: params[:id])
   end
-  
+
   def update
     @user = User.find_by(id: params[:id])
     if @user.update(update_user_params)
-      flash[:success] = 'Success!!'
+      flash[:success] = "Success!!"
       redirect_to edit_user_path(@user)
     else
-      render :edit
+      render "edit"
     end
   end
 

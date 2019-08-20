@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
   before_action :set_room, except: [:index, :new, :create]
   before_action :authenticate_user, except: [:show]
@@ -14,10 +16,10 @@ class RoomsController < ApplicationController
   def create
     @room = current_user.rooms.build(room_params)
     if @room.save
-      redirect_to listing_room_path(@room), notice: 'Saved...'
+      redirect_to listing_room_path(@room), notice: "Saved..."
     else
-      flash.now[:alert] = 'Something wen wrong...'
-      render :new
+      flash.now[:alert] = "Something wen wrong..."
+      render "new"
     end
   end
 
@@ -49,11 +51,11 @@ class RoomsController < ApplicationController
     new_params = room_params.merge(active: true) if is_ready_room
 
     if @room.update(new_params)
-      flash[:notice] = 'Saved...'
+      flash[:notice] = "Saved..."
     else
-      flash[:notice] = 'Something went wrong...'
+      flash[:notice] = "Something went wrong..."
     end
-    redirect_back(fallback_location: request.referer)
+    redirect_back(fallback_location: request.referrer)
   end
 
   private

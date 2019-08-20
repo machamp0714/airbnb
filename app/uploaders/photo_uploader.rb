@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PhotoUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
@@ -11,7 +13,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    'blank.jpg'
+    "blank.jpg"
   end
 
   process resize_to_fill: [300, 300]

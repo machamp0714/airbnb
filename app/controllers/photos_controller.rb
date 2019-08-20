@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PhotosController < ApplicationController
   def create
     room = Room.find(params[:room_id])
@@ -6,6 +8,6 @@ class PhotosController < ApplicationController
     end
 
     @photos = room.photos
-    redirect_back fallback_location: request.referer, notice: 'Saved'
+    redirect_back fallback_location: request.referrer, notice: "Saved"
   end
 end

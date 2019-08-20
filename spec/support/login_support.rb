@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module LoginSupport
   def sign_in_as(user)
     visit root_path
-    click_link 'Login'
-    fill_in 'メールアドレス', with: user.email
-    fill_in 'パスワード', with: user.password
-    within '#session' do
-      click_on 'ログイン'
+    click_link "Login"
+    fill_in "メールアドレス", with: user.email
+    fill_in "パスワード", with: user.password
+    within "#session" do
+      click_on "ログイン"
     end
   end
 end

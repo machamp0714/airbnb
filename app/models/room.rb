@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Room < ApplicationRecord
   belongs_to :user
   has_many :photos
@@ -16,7 +18,7 @@ class Room < ApplicationRecord
     if self.photos.length > 0
       self.photos[0].image_url(size)
     else
-      'blank.jpg'
+      "blank.jpg"
     end
   end
 end
