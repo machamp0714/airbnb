@@ -2,6 +2,7 @@ inherit_gem:
   rubocop-github:
     - config/default.yml
     - config/rails.yml
+require: rubocop-rails
 
 AllCops:
   Exclude:
