@@ -19,6 +19,5 @@ Rails.application.routes.draw do
     resources :photos, only: [:create, :destroy]
     resources :reservations, only: [:create]
   end
-
   root "pages#top"
 end
