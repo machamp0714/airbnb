@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   def new
   end
@@ -7,22 +9,22 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       if user.activated?
         login user
-        remember user if params[:remember_me] == '1'
-        flash[:success] = 'ログインしました。'
+        remember user if params[:remember_me] == "1"
+        flash[:success] = "ログインしました。"
         redirect_to root_path
       else
-        flash[:alert] = 'アカウントは有効ではありません。'
+        flash[:alert] = "アカウントは有効ではありません。"
         redirect_to root_path
       end
     else
-      flash.now[:alert] = 'メールアドレスかパスワードのどちらかに誤りがあります。'
-      render :new
+      flash.now[:alert] = "メールアドレスかパスワードのどちらかに誤りがあります。"
+      render "new"
     end
   end
 
   def destroy
     logout if signed_in?
-    flash[:success] = 'ログアウトしました。'
+    flash[:success] = "ログアウトしました。"
     redirect_to root_path
   end
 end
