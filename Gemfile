@@ -25,6 +25,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog-aws'
 gem 'font-awesome-rails'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
