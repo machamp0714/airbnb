@@ -24,6 +24,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @reservation = @room.reservations.build
   end
 
   def listing
