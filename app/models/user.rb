@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 
   validates :name,
     presence: true,
@@ -33,7 +34,7 @@ class User < ApplicationRecord
     end
 
     def remember
-      self.remember_token = User.new_token
+      self.remember_token = User.new_toke
       update_attribute(:remember_digest, User.digest(self.remember_token))
     end
 
@@ -52,7 +53,7 @@ class User < ApplicationRecord
     end
 
     def activate
-      update_columns(activated: true, activated_at: Time.zone.now)
+      update_attribute(activated: true, activated_at: Time.zone.now)
     end
 
     private
