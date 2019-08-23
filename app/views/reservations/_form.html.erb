@@ -1,6 +1,41 @@
+<div class='panel'>
+  <div class='panel-heading'>
+    <span><i class='fas fa-bolt'></i> $<%= @room.price %> </span>
+    <span class='pull-right'>Per Night</span>
+  </div>
+</div>
+
 <%= form_with model: @reservation, url: room_reservations_path(@room), local:true do |form| %>
-  <%= form.text_field :start_date %>
-  <%= form.text_field :end_date %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <label>Check In</label>
+      <%= form.text_field :start_date, readonly: true, placeholder: "Start Date", class: "form-control datepicker" %>
+    </div>
+    <div class='col-md-6'>
+      <label>Check Out</label>
+      <%= form.text_field :end_date, readonly: true, placeholder: "End Date", class: "form-control datepicker", disabled: true %>
+    </div>
+  </div>
+
+  <div id='preview' style="display: none">
+    <table class='reservation-table'>
+      <tbody>
+        <tr>
+          <td>Price</td>
+          <td class="text-right"> <%= @room.price %> </td>
+        </tr>
+        <tr>
+          <td>Night(s)</td>
+          <td class="text-right"> <span id='reservation_days'></span> </td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td class="text-right"> <span id='reservation_total'></span> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <br>
   <%= form.submit "Book Now", class: "btn btn-normal btn-block" %>
 <% end %>
