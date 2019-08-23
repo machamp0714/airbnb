@@ -59,7 +59,29 @@ class RoomsController < ApplicationController
     redirect_back(fallback_location: request.referrer)
   end
 
+  def preload
+    today = Time.zone.today # Date.today
+    reservations = @room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+
+    render json: reservations
+  end
+
+  def preview
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+
+    output = {
+      conflict: is_conflict(start_date, end_date, @room)
+    }
+
+    render json: output
+  end
+
   private
+    def is_conflict(start_date, end_date, room)
+      reservations = room.reservations.where("start_date > ? AND end_date < ?", start_date, end_date)
+      reservations.size > 0 ? true : false
+    end
 
     def set_room
       @room = Room.find(params[:id])
@@ -75,6 +97,6 @@ class RoomsController < ApplicationController
     end
 
     def is_ready_room
-      !@room.active && !@room.price.blank? && !@room.listing_name.blank? && !@room.photos.blank? && !@room.address.blank?
+      !@room.active && @room.price.present? && @room.listing_name.present? && @room.photos.present? && @room.address.present?
     end
 end
