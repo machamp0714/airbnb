@@ -21,6 +21,7 @@ nav.navbar.navbar-expand-lg.navbar-default
               = link_to "List Your Space", new_room_path, class: 'dropdown-item'
               = link_to "Your Reservations", your_reservations_path, class: 'dropdown-item'
               = link_to "Your Trips", your_trips_path, class: 'dropdown-item'
+              = link_to "My Profile", user_path(current_user), class: 'dropdown-item'
               = link_to 'Edit profile', edit_user_path(current_user), class: 'dropdown-item'
               = link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item'
         - else
