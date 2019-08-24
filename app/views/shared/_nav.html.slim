@@ -7,6 +7,9 @@ nav.navbar.navbar-expand-lg.navbar-default
 
     .collapse.navbar-collapse#navbar
       ul.navbar-nav.ml-auto
+        li
+          button.btn.btn-form.btn-small
+            = link_to "Become a host", new_room_path, style: "color: white text-decoration: none"
         - if signed_in?
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle#navDropdown href="#" role="button" data-toggle="dropdown" 
@@ -14,6 +17,10 @@ nav.navbar.navbar-expand-lg.navbar-default
               span
                 = current_user.name
             .dropdown-menu
+              = link_to "Manage Listing", rooms_path, class: 'dropdown-item'
+              = link_to "List Your Space", new_room_path, class: 'dropdown-item'
+              = link_to "Your Reservations", your_reservations_path, class: 'dropdown-item'
+              = link_to "Your Trips", your_trips_path, class: 'dropdown-item'
               = link_to 'Edit profile', edit_user_path(current_user), class: 'dropdown-item'
               = link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item'
         - else
