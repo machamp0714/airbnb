@@ -34,7 +34,7 @@ class User < ApplicationRecord
     end
 
     def remember
-      self.remember_token = User.new_toke
+      self.remember_token = User.new_token
       update_attribute(:remember_digest, User.digest(self.remember_token))
     end
 
@@ -53,7 +53,7 @@ class User < ApplicationRecord
     end
 
     def activate
-      update_attributes(activated: true, activated_at: Time.zone.now)
+      update(activated: true, activated_at: Time.zone.now)
     end
 
     private
