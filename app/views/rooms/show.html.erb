@@ -80,19 +80,6 @@
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb4qcvi4nz75D5LaXbMTra2CS2CGFSU9E&callback=initialize"></script>
     </div>
 
-    <div class='row'>
-      <h3>Near by</h3>
-      <% for room in @room.nearbys(10) %>
-        <div class='col-md-4'>
-          <%= image_tag room.cover_photo(:thumb) %>
-        </div>
-        <div>
-          <%= link_to room.listing_name, room %><br>
-          (<%= room.distance.round(2) %> miles way)
-        </div>
-      <% end %>
-    </div>
-
     <div class='col-md-4'>
       <%= render 'reservations/form' %>
     </div>

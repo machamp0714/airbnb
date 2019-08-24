@@ -1,0 +1,28 @@
+.row
+  .col-md-3
+    ul.sidebar-list
+      li.sidebar-item
+        = link_to 'Your Listings', rooms_path, class: 'sidebar-link'
+      li.sidebar-item
+        = link_to 'Your Reservations', your_reservations_path, class: 'sidebar-link'
+      li.sidebar-item
+        = link_to 'Your Trips', your_trips_path, class: 'sidebar-link active'
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        | Your Trips
+      .panel-body
+        - @trips.each do |trip|
+          .roomsWrapper
+            = trip.start_date.strftime("%v")
+            .roomsWrapper_image
+              = link_to room_path(trip.room) do
+                = image_tag trip.room.cover_photo(:thumb)
+            .roomsWpaeer_name
+              h4
+                = link_to trip.room.listing_name, room_path(trip.room)
+                span.pull-right.text-center
+                  = image_tag avatar_url(trip.room.user), class: "img-circle avatar-medium"
+                  = link_to user_path(trip.user) do 
+                    = trip.room.user.name
+          hr/

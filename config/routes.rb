@@ -21,5 +21,7 @@ Rails.application.routes.draw do
     resources :photos, only: [:create, :destroy]
     resources :reservations, only: [:create]
   end
+  get "your_trips", to: "reservations#your_trips"
+  get "your_reservations", to: "reservations#your_reservations"
   root "pages#top"
 end
