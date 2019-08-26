@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_124139) do
+ActiveRecord::Schema.define(version: 2019_08_25_051801) do
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
@@ -31,6 +31,22 @@ ActiveRecord::Schema.define(version: 2019_08_20_124139) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "comment"
+    t.integer "star", default: 1
+    t.bigint "room_id"
+    t.bigint "reservation_id"
+    t.bigint "host_review_id"
+    t.bigint "guest_review_id"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guest_review_id"], name: "index_reviews_on_guest_review_id"
+    t.index ["host_review_id"], name: "index_reviews_on_host_review_id"
+    t.index ["reservation_id"], name: "index_reviews_on_reservation_id"
+    t.index ["room_id"], name: "index_reviews_on_room_id"
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -77,5 +93,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_124139) do
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "reservations"
+  add_foreign_key "reviews", "rooms"
   add_foreign_key "rooms", "users"
 end
