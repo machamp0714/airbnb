@@ -13,7 +13,7 @@ class HostReviewsController < ApplicationController
                       )
       if @has_reviewed.nil?
         @host_review = current_user.host_reviews.create(host_review_params)
-        flash[:success] = "Revire created..."
+        flash[:success] = "Review created..."
       else
         flash[:notice] = "You already reviewed this Reservation."
       end

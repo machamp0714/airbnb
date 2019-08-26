@@ -1,0 +1,35 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-normal" data-toggle="modal" data-target="#exampleModal_<%= reservation.id %>">
+  Review Your Host
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal_<%= reservation.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-left" id="exampleModalLabel">Review Your Host</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: current_user.guest_reviews.build do |form| %>
+          <div class='form-group text-center'>
+            <%= form.text_field :star %>
+          </div>
+          <div class='form-group text-center'>
+            <%= form.text_area :comment, rows: 3, class: "form-control" %>
+          </div>
+          <%= form.hidden_field :room_id, value: reservation.room.id  %>
+          <%= form.hidden_field :reservation_id, value: reservation.id  %>
+          <%= form.hidden_field :host_id, value: reservation.room.user.id  %>
+
+          <div class='text-center'>
+            <%= form.submit "Add Review", class: "btn btn-normal" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

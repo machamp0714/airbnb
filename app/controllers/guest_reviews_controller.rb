@@ -4,15 +4,15 @@ class GuestReviewsController < ApplicationController
     @reservation = Reservation.find_by(
                     id: guest_review_params[:reservation_id],
                     room_id: guest_review_params[:room_id]
-    )
-    if !@reservation.nil && @reservation.room.user.id == guest_review_params[:host_id]
+                  )
+    if !@reservation.nil? && @reservation.room.user.id == guest_review_params[:host_id].to_i
       @has_reviewed = GuestReview.find_by(
                         reservation_id: @reservation.id,
                         host_id: guest_review_params[:host_id]
                       )
       if @has_reviewed.nil?
         @guest_review = current_user.guest_reviews.create(guest_review_params)
-        flash[:success] = "Revire created..."
+        flash[:success] = "Review created..."
       else
         flash[:notice] = "You already reviewed this Reservation."
       end
