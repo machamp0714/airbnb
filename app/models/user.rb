@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   has_many :rooms, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_many :guest_reviews, class_name: "GuestReview", forign_key: "guest_id", dependent: :destroy
+  has_many :host_reviews, class_name: "HostReview", forign_key: "host_id", dependent: :destroy
 
   validates :name,
     presence: true,
