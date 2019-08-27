@@ -11,9 +11,11 @@ AllCops:
     - "vendor/**/*"
     - "db/schema.rb"
     - "node_modules/**/*"
-    - "db/migrate/*.rb"
+    - "db/migrate/"
     - "bin/*"
   TargetRubyVersion: 2.5.3
 
 GitHub/RailsControllerRenderPathsExist:
+  Enabled: false
+Style/FrozenStringLiteralComment:
   Enabled: false

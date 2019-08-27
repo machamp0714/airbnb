@@ -1,0 +1,33 @@
+<% if @host_reviews.count == 0 %>
+  <div class='text-center'>
+    <h4>There are no reviews.</h4>
+  </div>
+<% else %>
+  <% @host_reviews.order(id: :desc).each do |review| %>
+    <div class='row'>
+      <div class='col-md-3 text-center'>
+        <%= image_tag avatar_url(review.host), class: "img-circle avatar-medium" %><br>
+        <strong><%= review.host.name %></strong>
+      </div>
+      <div class='col-md-9'>
+        <div id="star_<%= review.id %>"></div>
+        <script>
+          $("#star_<%= review.id %>").raty({
+            path: "/assets",
+            readOnly: true,
+            score: <%= review.star %> 
+          });
+        </script>
+        <% if current_user && current_user.id == review.host.id %>
+          <span class='pull-right'>
+            <%= link_to review, method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+      <div><%= review.created_at.strftime("%v") %></div>
+      <div><%= review.comment %></div>
+    </div>
+  <% end %>
+<% end %>

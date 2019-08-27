@@ -25,6 +25,7 @@ class RoomsController < ApplicationController
 
   def show
     @reservation = @room.reservations.build
+    @guest_reviews = @room.guest_reviews.order(id: :desc)
   end
 
   def listing
