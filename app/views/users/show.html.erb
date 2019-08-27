@@ -18,7 +18,7 @@
     <h4>Listings <%= @user.rooms.length %> </h4>
 
     <div class='row'>
-      <% @user.rooms.each do |room| %>
+      <% @rooms.each do |room| %>
         <div class='col-md-4'>
           <div class='preview'>
             <%= image_tag room.cover_photo(:thumb) %>
@@ -28,6 +28,17 @@
           </div>
         </div>
       <% end %>
+    </div>
+    <br>
+
+    <h4>Reviews From Guests (<%= @guest_reviews.count %>)</h4>
+    <div class='row'>
+      <%= render "reviews/guest_list" %>
+    </div>
+
+    <h4>Reviews From Hosts (<%= @host_reviews.count %>)</h4>
+    <div class='row'>
+      <%= render "reviews/host_list" %>
     </div>
   </div>
 </div>
