@@ -22,6 +22,12 @@ class GuestReviewsController < ApplicationController
     redirect_back fallback_location: request.referrer
   end
 
+  def destroy
+    @guest_review = Review.find(params[:id]).destroy
+    flash[:success] = "This review deleted!"
+    redirect_back fallback_location: request.referrer
+  end
+
   private
 
     def guest_review_params

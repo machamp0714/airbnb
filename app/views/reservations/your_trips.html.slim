@@ -23,7 +23,7 @@
                 = link_to trip.room.listing_name, room_path(trip.room)
                 span.pull-right.text-center
                   = image_tag avatar_url(trip.room.user), class: "img-circle avatar-medium"
-                  = link_to user_path(trip.user) do 
+                  = link_to user_path(trip.room.user) do 
                     = trip.room.user.name
               .text-right
                 = render partial: "reviews/guest_form", locals: {reservation: trip}

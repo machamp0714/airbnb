@@ -10,7 +10,14 @@
         <strong><%= review.guest.name %></strong>
       </div>
       <div class='col-md-9'>
-        <%= review.star %>
+        <div id="star_<%= review.id %>"></div>
+        <script>
+          $("#star_<%= review.id %>").raty({
+            path: "/assets",
+            readOnly: true,
+            score: <%= review.star %> 
+          });
+        </script>
         <% if current_user && current_user.id == review.guest.id %>
           <span class='pull-right'>
             <%= link_to review, method: :delete, data: { confirm: "Are you sure?" } do %>

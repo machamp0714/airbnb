@@ -23,6 +23,12 @@ class HostReviewsController < ApplicationController
     redirect_back fallback_location: request.referrer
   end
 
+  def destroy
+    @host_review = Review.find(params[:id]).destroy
+    flash[:success] = "This review deleted!"
+    redirect_back fallback_location: request.referrer
+  end
+
   private
 
     def host_review_params
