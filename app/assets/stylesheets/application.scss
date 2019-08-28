@@ -12,5 +12,24 @@
  */
 @import "bootstrap";
 @import "toastr";
-@import 'font-awesome';
+@import "font-awesome";
 @import "all";
+
+#main {
+  height: 100%;
+  overflow: hidden;
+}
+
+#left {
+  padding: 10px 400px 10px 20px;
+  overflow: hidden;
+  height: 100%;
+}
+
+#right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100%;
+}
