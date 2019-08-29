@@ -13,7 +13,7 @@
       <br/>
       <div class="collapse" id="collapsePanel">
 
-          <%= search_form_for @search, url: search_path, remote: true do |f| %>
+          <%= search_form_for @search, url: search_path do |f| %>
 
               <div class="row">
                 <div class="col-md-8">
@@ -22,11 +22,11 @@
                 </div>
                 <div class="col-md-2">
                   <label>Min Price:</label>
-                  <%= f.text_field :price_gteq, class: "form-control" %>
+                  <%= f.search_field :price_gteq, class: "form-control" %>
                 </div>
                 <div class="col-md-2">
                   <label>Max Price:</label>
-                  <%= f.text_field :price_lteq, class: "form-control" %>
+                  <%= f.search_field :price_lteq, class: "form-control" %>
                 </div>
               </div>
               <hr/>
