@@ -22,11 +22,11 @@ gem "pry-byebug"
 gem "puma", "~> 3.11"
 gem "rails", "~> 5.2.3"
 gem "rails-i18n", "~> 5.1"
+gem "ransack"
 gem "rmagick"
 gem "sass-rails", "~> 5.0"
 gem "slim-rails"
 gem "toastr-rails"
-gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
 
 group :development, :test do
