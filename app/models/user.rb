@@ -67,7 +67,7 @@ class User < ApplicationRecord
 
     def send_pin
       @client = Twilio::REST::Client.new
-      @client.messages.create(
+      @client.api.account.messages.create(
         from: ENV["TWILIO_FROM"],
         to: self.phone_number,
         body: "Your verification code is: #{self.pin}"
