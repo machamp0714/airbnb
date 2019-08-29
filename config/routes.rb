@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
 
+  get "dashboard", to: "dashboards#index"
   get "your_trips", to: "reservations#your_trips"
   get "your_reservations", to: "reservations#your_reservations"
   get "search", to: "pages#search"
