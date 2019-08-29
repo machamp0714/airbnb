@@ -1,0 +1,24 @@
+<div class='row'>
+  <div class='col-md-3'>
+    <div class='center'>
+      <%= image_tag avatar_url(current_user), class: "avatar-full" %>
+    </div>
+    <div class='panel panel-default'>
+      <div class='panel-heading'> <%= current_user.name %> </div>
+    </div>
+  </div>
+
+  <div class='col-md-9'>
+    <!-- Notification -->
+    <div class='panel panel-default'>
+      <div class='panel-heading'>Notifications</div>
+      <div class='panel-body'></div>
+    </div>
+
+    <!-- Your listings -->
+    <div class='panel panel-default'>
+      <div class='panel-heading'>Your Listings (<%= @rooms.length %>) </div>
+      <%= render partial: "rooms/rooms_list", locals: { rooms: @rooms } %>
+    </div>
+  </div>
+</div>
