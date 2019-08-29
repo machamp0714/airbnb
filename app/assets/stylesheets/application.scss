@@ -41,3 +41,27 @@
   margin: 0 auto;
   margin-bottom: 20px;
 }
+.text-red,
+.icon-red {
+  color: #ff5a5f;
+}
+.discovery-card {
+  background-size: cover;
+  background-position: center;
+  height: 326px;
+}
+.la {
+  background-image: image-url("LA.jpg");
+}
+.ld {
+  background-image: image-url("LD.jpg");
+}
+.pr {
+  background-image: image-url("PR.jpg");
+}
+.mi {
+  background-image: image-url("MI.jpg");
+}
+.banner {
+  margin: 50px 0;
+}
