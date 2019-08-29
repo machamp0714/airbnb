@@ -18,5 +18,4 @@
 //= require jquery-ui/widgets/slider
 //= require toastr
 //= require activestorage
-//= require turbolinks
 //= require_tree .
