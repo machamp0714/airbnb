@@ -27,6 +27,7 @@ gem "rmagick"
 gem "sass-rails", "~> 5.0"
 gem "slim-rails"
 gem "toastr-rails"
+gem "twilio-ruby"
 gem "uglifier", ">= 1.3.0"
 
 group :development, :test do

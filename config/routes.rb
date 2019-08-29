@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
-  resources :users
+  resources :users do
+    member do
+      post "verify_phone_number", to: "users#verify_phone_number"
+      patch "update_phone_number", to: "users#update_phone_number"
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :rooms, except: [:edit] do
     member do
@@ -24,6 +29,7 @@ Rails.application.routes.draw do
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
 
+  get "dashboard", to: "dashboards#index"
   get "your_trips", to: "reservations#your_trips"
   get "your_reservations", to: "reservations#your_reservations"
   get "search", to: "pages#search"

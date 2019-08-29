@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_133430) do
+ActiveRecord::Schema.define(version: 2019_08_29_195426) do
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_133430) do
     t.datetime "activated_at"
     t.string "phone_number"
     t.text "description"
+    t.string "pin"
+    t.boolean "phone_verified"
     t.index ["activation_digest"], name: "index_users_on_activation_digest", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true

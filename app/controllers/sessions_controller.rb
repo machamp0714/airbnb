@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         login user
         remember user if params[:remember_me] == "1"
         flash[:success] = "ログインしました。"
-        redirect_to root_path
+        redirect_to dashboard_path
       else
         flash[:alert] = "アカウントは有効ではありません。"
         redirect_to root_path

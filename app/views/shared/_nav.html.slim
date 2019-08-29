@@ -1,8 +1,8 @@
-nav.navbar.navbar-expand-lg.navbar-default
+nav.navbar.navbar-expand-lg.navbar-default.dashboard
   .container
     .navbar-header
-      = link_to 'Airbnb', root_path, class: 'navbar-brand'
-      button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbar'
+      = link_to "Airbnb", root_path, class: "navbar-brand"
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar"
         span.navbar-toggler-icon
 
     .collapse.navbar-collapse#navbar
@@ -13,19 +13,28 @@ nav.navbar.navbar-expand-lg.navbar-default
         - if signed_in?
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle#navDropdown href="#" role="button" data-toggle="dropdown" 
-              = image_tag avatar_url(current_user), class: 'avatar-circle avatar-small avatar-margin'
+              = image_tag avatar_url(current_user), class: "avatar-circle avatar-small avatar-margin"
               span
                 = current_user.name
             .dropdown-menu
-              = link_to "Manage Listing", rooms_path, class: 'dropdown-item'
-              = link_to "List Your Space", new_room_path, class: 'dropdown-item'
-              = link_to "Your Reservations", your_reservations_path, class: 'dropdown-item'
-              = link_to "Your Trips", your_trips_path, class: 'dropdown-item'
-              = link_to "My Profile", user_path(current_user), class: 'dropdown-item'
-              = link_to 'Edit profile', edit_user_path(current_user), class: 'dropdown-item'
-              = link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item'
+              = link_to "Manage Listing", rooms_path, class: "dropdown-item"
+              = link_to "List Your Space", new_room_path, class: "dropdown-item"
+              = link_to "Your Reservations", your_reservations_path, class: "dropdown-item"
+              = link_to "Your Trips", your_trips_path, class: "dropdown-item"
+              = link_to "My Profile", user_path(current_user), class: "dropdown-item"
+              = link_to "Edit profile", edit_user_path(current_user), class: "dropdown-item"
+              = link_to "Logout", logout_path, method: :delete, class: "dropdown-item"
         - else
           li.nav-item
-            = link_to 'Sign Up', new_user_path, class: 'nav-link'
+            = link_to "Sign Up", new_user_path, class: "nav-link"
           li.nav-item
-            = link_to 'Login', login_path, class: 'nav-link' 
+            = link_to "Login", login_path, class: "nav-link" 
+
+- if signed_in? && !current_page?(root_path) && !current_page?("rooms/#{params[:id]}")
+  nav.navbar.navbar-default.dashboard-color
+    .container
+      ul.navbar-nav.dashboard-nav
+        li.board-item
+          = link_to "Dashboard", dashboard_path, class: "dashboard-link"
+        li.board-item
+          = link_to  "Manage Listings", rooms_path, class: "dashboard-link"
