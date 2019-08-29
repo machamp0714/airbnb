@@ -58,6 +58,26 @@ class User < ApplicationRecord
       update(activated: true, activated_at: Time.zone.now)
     end
 
+    def generate_pin
+      # 安全な乱数発生器
+      self.pin = SecureRandom.hex(2)
+      self.phone_verified = false
+      save
+    end
+
+    def send_pin
+      @client = Twilio::REST::Client.new
+      @client.messages.create(
+        from: ENV["TWILIO_FROM"],
+        to: self.phone_number,
+        body: "Your verification code is: #{self.pin}"
+      )
+    end
+
+    def verify_pin(entered_pin)
+      update(phone_verified: true) if self.pin == entered_pin
+    end
+
     private
       def downcase_email
         self.email = email.downcase
