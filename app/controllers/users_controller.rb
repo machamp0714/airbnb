@@ -38,12 +38,35 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_phone_number
+    current_user.update(update_user_params)
+    current_user.generate_pin
+    current_user.send_pin
+
+    redirect_to edit_user_path(current_user), notice: "Saved..."
+  rescue StandardError => e
+    redirect_to edit_user_path(current_user), alert: "#{e.message}"
+  end
+
+  def verify_phone_number
+    current_user.verify_pin(params[:user][:pin])
+
+    if current_user.phone_verified
+      flash[:notice] = "Your phone number is verified."
+    else
+      flash[:alert] = "Cannot verify your phone number."
+    end
+    redirect_to edit_user_path(current_user)
+  rescue StandardError => e
+    redirect_to edit_user_path(current_user), alert: "#{e.message}"
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password)
     end
 
     def update_user_params
-      params.require(:user).permit(:name, :phone_number, :description, :email, :password)
+      params.require(:user).permit(:name, :phone_number, :description, :email, :password, :phone_number, :pin)
     end
 end
