@@ -40,6 +40,18 @@ class ReservationsController < ApplicationController
     @rooms = current_user.rooms
   end
 
+  def approve
+    @reservation = Reservation.find(params[:id])
+    @reservation.Approved!
+    redirect_to your_reservations_path
+  end
+
+  def decline
+    @reservation = Reservation.find(params[:id])
+    @reservation.Dicline!
+    redirect_to your_reservations_path
+  end
+
   private
 
     def reservation_params
