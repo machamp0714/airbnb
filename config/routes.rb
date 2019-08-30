@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resources :reservations, only: [:approve, :decline] do
     member do
       post "approve", to: "reservations#approve"
-      post "decline", to: "reservations#decline"
+      post "dicline", to: "reservations#dicline"
     end
   end
 

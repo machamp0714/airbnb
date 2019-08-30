@@ -46,7 +46,7 @@ class ReservationsController < ApplicationController
     redirect_to your_reservations_path
   end
 
-  def decline
+  def dicline
     @reservation = Reservation.find(params[:id])
     @reservation.Dicline!
     redirect_to your_reservations_path

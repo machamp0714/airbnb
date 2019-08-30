@@ -15,6 +15,8 @@
         - @trips.each do |trip|
           .roomsWrapper
             = trip.start_date.strftime("%v")
+            p
+              = trip.status
             .roomsWrapper_image
               = link_to room_path(trip.room) do
                 = image_tag trip.room.cover_photo(:thumb)
