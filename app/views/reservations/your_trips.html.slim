@@ -28,5 +28,6 @@
                   = link_to user_path(trip.room.user) do 
                     = trip.room.user.name
               .text-right
-                = render partial: "reviews/guest_form", locals: {reservation: trip}
+                - if trip.Approved?
+                  = render partial: "reviews/guest_form", locals: {reservation: trip}
           hr/

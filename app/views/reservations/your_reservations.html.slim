@@ -36,5 +36,6 @@
                     = image_tag avatar_url(reservation.user), class: "img-circle avatar-small"
                     = reservation.user.name
                 .text-right
-                = render partial: "reviews/host_form", locals: {reservation: reservation}
+                  - if reservation.Approved?
+                    = render partial: "reviews/host_form", locals: {reservation: reservation}
             hr/
