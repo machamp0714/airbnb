@@ -89,7 +89,7 @@ class RoomsController < ApplicationController
     end
 
     def room_params
-      params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_air, :is_heating, :is_internet, :is_kitchen, :price, :active)
+      params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_air, :is_heating, :is_internet, :is_kitchen, :price, :active, :instant)
     end
 
     def correct_user
