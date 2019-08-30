@@ -18,9 +18,16 @@ class ReservationsController < ApplicationController
       @reservation.price = room.price
       @reservation.total = room.price * days
 
-      @reservation.save
-
-      flash[:notice] = "Booked Successfully!"
+      if @reservation.save
+        if room.Request?
+          flash[:notice] = "Request sent successfully!"
+        else
+          @reservation.Approved!
+          flash[:notice] = "Reservation created successfully!"
+        end
+      else
+        flash[:alert] = "Cannot make a reservation."
+      end
     end
     redirect_to room
   end
@@ -31,6 +38,18 @@ class ReservationsController < ApplicationController
 
   def your_reservations
     @rooms = current_user.rooms
+  end
+
+  def approve
+    @reservation = Reservation.find(params[:id])
+    @reservation.Approved!
+    redirect_to your_reservations_path
+  end
+
+  def dicline
+    @reservation = Reservation.find(params[:id])
+    @reservation.Dicline!
+    redirect_to your_reservations_path
   end
 
   private

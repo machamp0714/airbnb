@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   end
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
+  resources :reservations, only: [:approve, :decline] do
+    member do
+      post "approve", to: "reservations#approve"
+      post "dicline", to: "reservations#dicline"
+    end
+  end
 
   get "dashboard", to: "dashboards#index"
   get "your_trips", to: "reservations#your_trips"

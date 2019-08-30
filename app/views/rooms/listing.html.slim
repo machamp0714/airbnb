@@ -29,5 +29,8 @@
             .form-group
               = form.label :bath_room, 'Bath Rooms'
               = form.select :bath_room, [['1', 1], ['2', 2], ['3', 3], ['4+', 4]], id: 'bath_room', prompt: 'Select...', class: 'form-control'
-        
+          .col-md-4.select
+            .form-group
+              = form.label :instant, 'Booking Type'
+              = form.select :instant, Room.instants.map {|key, value| [key.humanize, key] }, prompt: 'Select...' , class: 'form-control'
         = form.submit 'Save', class: 'btn btn-normal'

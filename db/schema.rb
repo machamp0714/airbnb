@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_195426) do
+ActiveRecord::Schema.define(version: 2019_08_30_000932) do
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_195426) do
     t.integer "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_195426) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "instant", default: 1
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
