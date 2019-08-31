@@ -3,7 +3,6 @@ class CalendarsController < ApplicationController
 
   def host
     @rooms = current_user.rooms
-
     params[:start_date] ||= Date.current.to_s
     params[:room_id] ||= @rooms[0] ? @rooms[0].id : nil
 

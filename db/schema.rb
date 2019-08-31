@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_30_000932) do
+ActiveRecord::Schema.define(version: 2019_08_31_081410) do
+
+  create_table "calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "day"
+    t.integer "price"
+    t.integer "status"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_calendars_on_room_id"
+  end
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
@@ -94,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_08_30_000932) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "calendars", "rooms"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
