@@ -1,0 +1,55 @@
+<% if !@rooms.blank? %>
+  <div class='row'>
+    <%= search_form_for @search, class: "form-group", remote: true, url: host_calendar_path do |f| %>
+      <div class='col-md-12 select'>
+        <div class='form-group'>
+          <label>Your Listings</label>
+          <%= f.select :room_id, options_for_select(@rooms.collect { |u| [u.listing_name, u.id] }, params[:room_id]), {}, 
+            {
+              onchange: "$(this.form).submit()", 
+              class: "form-control" 
+            }
+          %>
+        </div>
+      </div>
+      <%= f.hidden_field :start_date, id: "start-date", value: params[:start_date] %>
+    <% end %>
+  </div>
+<% end %>
+
+<div id='calendar'></div>
+
+<script>
+  window.reservations = <%= raw @events.to_json %>
+  console.log(reservations);
+
+  function showReservations(data) {
+    return data.map(e => {
+      return {
+        name: e.name,
+        start: e["start_date"],
+        end: e["end_date"],
+        status: e.status
+      }
+    });
+  }
+
+  $("#calendar").fullCalendar({
+    header: {
+      left: "title",
+      center: "",
+      right: "prev, next"
+    },
+    defaultDate: $("#start-date").val(),
+    events: showReservations(reservations),
+    eventRender: function(event, element, view) {
+      return $(`
+        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end">
+          <div class="fc-content ${event.status}">
+            <span class="fc-title">${event.name}</span>
+          </div>
+        </a>  
+      `);
+    }
+  });
+</script>
