@@ -69,3 +69,28 @@
 .card-deck {
   padding: 20px;
 }
+.fc-content.Waiting {
+  background-color: #c9cc6d;
+}
+.fc-past {
+  background-color: lightgray;
+}
+.fc-day {
+  position: relative;
+}
+.fc-content {
+  background-color: #00a699;
+  height: 40px;
+  border-radius: 20px;
+}
+.fc-event {
+  border: 0;
+  background-color: transparent;
+}
+.fc-title {
+  color: #fff;
+  font-size: 14px;
+  position: relative;
+  top: 10px;
+  left: 20px;
+}

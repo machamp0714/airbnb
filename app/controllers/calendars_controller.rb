@@ -12,10 +12,10 @@ class CalendarsController < ApplicationController
       start_date = Date.parse(params[:start_date])
 
       first_of_month = (start_date - 1.month).beginning_of_month
-      end_of_month = (start_date + 1.month).beginning_of_month
+      end_of_month = (start_date + 1.month).end_of_month
 
       @events = @room.reservations.joins(:user)
-                      .select("reservations.*, users.name, users.image, users.email")
+                      .select("reservations.*, users.name, users.email")
                       .where("(start_date BETWEEN ? AND ?) AND status <> ?", first_of_month, end_of_month, 2)
     else
       @room = nil
