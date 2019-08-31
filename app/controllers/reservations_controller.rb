@@ -17,7 +17,6 @@ class ReservationsController < ApplicationController
       @reservation.room = room
       @reservation.price = room.price
       @reservation.total = room.price * days
-
       if @reservation.save
         if room.Request?
           flash[:notice] = "Request sent successfully!"
