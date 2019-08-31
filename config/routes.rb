@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
     resources :photos, only: [:create, :destroy]
     resources :reservations, only: [:create]
+    resources :calendars
   end
   resources :guest_reviews, only: [:create, :destroy]
   resources :host_reviews, only: [:create, :destroy]
@@ -34,7 +35,6 @@ Rails.application.routes.draw do
       post "dicline", to: "reservations#dicline"
     end
   end
-  resources :calendars
 
   get "dashboard", to: "dashboards#index"
   get "your_trips", to: "reservations#your_trips"
