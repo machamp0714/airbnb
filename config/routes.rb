@@ -41,5 +41,7 @@ Rails.application.routes.draw do
   get "your_reservations", to: "reservations#your_reservations"
   get "search", to: "pages#search"
   get "host_calendar", to: "calendars#host"
+  get "payment_method", to: "users#payment"
+  get "add_card", to: "users#add_card"
   root "pages#top"
 end
