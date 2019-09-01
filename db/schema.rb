@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_31_081410) do
+ActiveRecord::Schema.define(version: 2019_09_01_062302) do
 
   create_table "calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2019_08_31_081410) do
     t.text "description"
     t.string "pin"
     t.boolean "phone_verified"
+    t.string "stripe_id"
     t.index ["activation_digest"], name: "index_users_on_activation_digest", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
