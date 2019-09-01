@@ -82,14 +82,14 @@ class UsersController < ApplicationController
         number: params[:number],
         exp_month: month,
         exp_year: year,
-        cvv: params[:cvv]
+        cvc: params[:cvv]
       }
     )
     customer.sources.create(source: new_token.id)
 
     flash[:notice] = "Your card saved."
     redirect_to payment_method_path
-  rescue Stripe::CardError => e 
+  rescue Stripe::CardError => e
     flash[:alert] = e.message
     redirect_to payment_method_path
   end

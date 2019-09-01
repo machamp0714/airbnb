@@ -42,6 +42,6 @@ Rails.application.routes.draw do
   get "search", to: "pages#search"
   get "host_calendar", to: "calendars#host"
   get "payment_method", to: "users#payment"
-  get "add_card", to: "users#add_card"
+  post "add_card", to: "users#add_card"
   root "pages#top"
 end
