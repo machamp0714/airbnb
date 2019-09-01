@@ -1,6 +1,27 @@
 class CalendarsController < ApplicationController
   before_action :authenticate_user
 
+  def create
+    date_from = Date.parse(calendar_params[:start_date])
+    date_to = Date.parse(calendar_params[:end_date])
+
+    (date_from..date_to).each do |date|
+      calendar = Calendar.where(room_id: params[:room_id], day: date)
+
+      if calendar.present?
+        calendar.update_all(price: calendar_params, status: calendar_params[:status])
+      else
+        Calendar.create(
+          room_id: params[:room_id],
+          day: date,
+          price: calendar_params[:price],
+          status: calendar_params[:status]
+        )
+      end
+    end
+    redirect_to host_calendar_path
+  end
+
   def host
     @rooms = current_user.rooms
     params[:start_date] ||= Date.current.to_s
@@ -23,9 +44,17 @@ class CalendarsController < ApplicationController
       @events = @room.reservations.joins(:user)
                       .select("reservations.*, users.name, users.email")
                       .where("(start_date BETWEEN ? AND ?) AND status <> ?", first_of_month, end_of_month, 2)
+      @days = Calendar.where("room_id = ? AND day BETWEEN ? AND ?", params[:room_id], first_of_month, end_of_month)
     else
       @room = nil
       @events = []
+      @days = []
     end
   end
+
+  private
+
+    def calendar_params
+      params.require(:calendar).permit(:price, :status, :start_date, :end_date)
+    end
 end
