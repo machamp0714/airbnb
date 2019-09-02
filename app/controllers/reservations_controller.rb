@@ -8,6 +8,9 @@ class ReservationsController < ApplicationController
 
     if current_user == room.user
       flash[:alert] = "You cannot book your own property!"
+    elsif current_user.stripe_id.blank?
+      flash[:alert] = "Please Update your payment method."
+      redirect_to payment_method_path
     else
       start_date = Date.parse(reservation_params[:start_date])
       end_date = Date.parse(reservation_params[:end_date])
@@ -17,11 +20,12 @@ class ReservationsController < ApplicationController
       @reservation.room = room
       @reservation.price = room.price
       @reservation.total = room.price * days
-      if @reservation.save
+
+      if @reservation.Waiting!
         if room.Request?
           flash[:notice] = "Request sent successfully!"
         else
-          @reservation.Approved!
+          charge(room, @reservation)
           flash[:notice] = "Reservation created successfully!"
         end
       else
@@ -41,7 +45,7 @@ class ReservationsController < ApplicationController
 
   def approve
     @reservation = Reservation.find(params[:id])
-    @reservation.Approved!
+    charge(@reservation.room, @reservation)
     redirect_to your_reservations_path
   end
 
@@ -62,4 +66,25 @@ class ReservationsController < ApplicationController
       redirect_to room, alert: "Noooooo" if room
     end
 
+    def charge(room, reservation)
+      if reservation.user.stripe_id.present?
+        customer = Stripe::Customer.retrieve(reservation.user.stripe_id)
+        charge = Stripe::Charge.create(
+          customer: customer.id,
+          amount: reservation.total * 100,
+          description: room.listing_name,
+          currency: "usd",
+        )
+        if charge
+          reservation.Approved!
+          flash[:notice] = "Reservation created successfully!"
+        else
+          reservation.Decline!
+          flash[:alert] = "Cannot charge with this payment method."
+        end
+      end
+    rescue Stripe::CardError => e
+      reservation.Decline!
+      flash[:alert] = e.message
+    end
 end

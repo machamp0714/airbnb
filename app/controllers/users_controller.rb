@@ -76,7 +76,7 @@ class UsersController < ApplicationController
       customer = Stripe::Customer.retrieve(current_user.stripe_id)
     end
 
-    month, year = params[:expiry].split(/ \/ /)
+    month, year = params[:expiry].split("/")
     new_token = Stripe::Token.create(
       card: {
         number: params[:number],
