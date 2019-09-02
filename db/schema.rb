@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_062302) do
+ActiveRecord::Schema.define(version: 2019_09_02_073219) do
 
   create_table "calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day"
@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 2019_09_01_062302) do
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
+  create_table "settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.boolean "enable_sms", default: true
+    t.boolean "enable_email", default: true
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_settings_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -112,4 +121,5 @@ ActiveRecord::Schema.define(version: 2019_09_01_062302) do
   add_foreign_key "reviews", "reservations"
   add_foreign_key "reviews", "rooms"
   add_foreign_key "rooms", "users"
+  add_foreign_key "settings", "users"
 end
