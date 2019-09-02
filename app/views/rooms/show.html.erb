@@ -91,7 +91,7 @@
           infoWindow.open(map, marker);
         }
       </script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb4qcvi4nz75D5LaXbMTra2CS2CGFSU9E&callback=initialize"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initialize"></script>
     </div>
 
     <div class='col-md-4'>
