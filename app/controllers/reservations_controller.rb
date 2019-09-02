@@ -8,6 +8,7 @@ class ReservationsController < ApplicationController
 
     if current_user == room.user
       flash[:alert] = "You cannot book your own property!"
+      redirect_to room
     elsif current_user.stripe_id.blank?
       flash[:alert] = "Please Update your payment method."
       redirect_to payment_method_path
@@ -31,8 +32,8 @@ class ReservationsController < ApplicationController
       else
         flash[:alert] = "Cannot make a reservation."
       end
+      redirect_to room
     end
-    redirect_to room
   end
 
   def your_trips
@@ -56,6 +57,14 @@ class ReservationsController < ApplicationController
   end
 
   private
+    def send_sms(room, reservation)
+      @client = Twilio::REST::Client.new
+      @client.api.account.messages.create(
+        from: ENV["TWILIO_FROM"],
+        to: room.user.phone_number,
+        body: "#{reservation.user.name} booked your '#{room.listing_name}'"
+      )
+    end
 
     def reservation_params
       params.require(:reservation).permit(:start_date, :end_date)
@@ -77,6 +86,7 @@ class ReservationsController < ApplicationController
         )
         if charge
           reservation.Approved!
+          send_sms(room, reservation)
           flash[:notice] = "Reservation created successfully!"
         else
           reservation.Decline!
