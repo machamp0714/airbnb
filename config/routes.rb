@@ -43,5 +43,8 @@ Rails.application.routes.draw do
   get "host_calendar", to: "calendars#host"
   get "payment_method", to: "users#payment"
   post "add_card", to: "users#add_card"
+  get "notification_settings", to: "settings#edit"
+  patch "notification_settings", to: "settings#update"
+
   root "pages#top"
 end
