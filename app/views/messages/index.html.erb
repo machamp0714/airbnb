@@ -1,0 +1,31 @@
+<div class='row'>
+  <div class='col-md-3 text-center'>
+    <%= image_tag avatar_url(@other), class: "avatar-medium image-circle" %>
+    <strong> <%= @other.name %> </strong>
+    <%= link_to "View Profile", @other, class: "btn btn-default" %>
+  </div>
+
+  <div class='col-md-9'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'> 
+        Conversations with <%= @other.name %>
+      </div>
+
+      <div class='panel-body'>
+        <div class='container text-center'>
+          <%= form_with model: [@conversation, @message], local: true do |f| %>
+            <div class='form-group'>
+              <%= f.text_field :content, placeholder: "Add a content", class: "form-control" %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+            </div>
+            <%= f.submit "Send Message", class: "btn btn-normal" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div id='chat'>
+        <%= render @messages %>
+      </div>
+    </div>
+  </div>
+</div>

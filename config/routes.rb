@@ -35,6 +35,9 @@ Rails.application.routes.draw do
       post "dicline", to: "reservations#dicline"
     end
   end
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
 
   get "dashboard", to: "dashboards#index"
   get "your_trips", to: "reservations#your_trips"
