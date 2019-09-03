@@ -50,4 +50,6 @@ Rails.application.routes.draw do
   patch "notification_settings", to: "settings#update"
 
   root "pages#top"
+
+  mount ActionCable.server => "/cable"
 end

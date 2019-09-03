@@ -20,4 +20,5 @@
 //= require moment
 //= require fullcalendar
 //= require activestorage
+//= require cable
 //= require_tree .
