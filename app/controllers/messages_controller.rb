@@ -18,12 +18,16 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages.order(created_at: :desc)
 
     if @message.save
-      redirect_to conversation_messages_path(@conversation)
+      ActionCable.server.broadcast "conversation_#{@conversation.id}", message: render_message(@message)
     end
   end
 
   private
     def message_params
       params.require(:message).permit(:content, :user_id)
+    end
+
+    def render_message(message)
+      self.render(partial: "messages/message", locals: { message: message })
     end
 end
