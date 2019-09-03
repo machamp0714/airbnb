@@ -4,8 +4,8 @@ class Conversation < ApplicationRecord
 
   has_many :messages, dependent: :destroy
 
-  validates :sender_id, uniquness: true
-  validates :recipient_id, uniquness: true
+  validates :sender_id, uniqueness: true
+  validates :recipient_id, uniqueness: true
 
   def self.involving(user)
     where("sender_id = ? OR recipient_id = ?", user.id, user.id)

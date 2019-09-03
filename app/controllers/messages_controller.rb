@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
     if current_user == @conversation.sender || current_user == @conversation.recipient
       @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
+      @message = @conversation.messages.build
       @messages = @conversation.messages.order(created_at: :desc)
     else
       redirect_to conversations_path, alert: "You don't have a permisiion to view this."
@@ -17,7 +18,7 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages.order(created_at: :desc)
 
     if @message.save
-      redirect_to conversations_messages_path(@conversation)
+      redirect_to conversation_messages_path(@conversation)
     end
   end
 
