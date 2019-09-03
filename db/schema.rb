@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_014439) do
+ActiveRecord::Schema.define(version: 2019_09_03_081435) do
 
   create_table "calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 2019_09_03_014439) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -127,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_09_03_014439) do
     t.string "pin"
     t.boolean "phone_verified"
     t.string "stripe_id"
+    t.integer "unread", default: 0
     t.index ["activation_digest"], name: "index_users_on_activation_digest", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
@@ -135,6 +144,7 @@ ActiveRecord::Schema.define(version: 2019_09_03_014439) do
   add_foreign_key "calendars", "rooms"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
