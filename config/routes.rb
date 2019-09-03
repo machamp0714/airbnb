@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   post "add_card", to: "users#add_card"
   get "notification_settings", to: "settings#edit"
   patch "notification_settings", to: "settings#update"
+  get "notifications", to: "notifications#index"
 
   root "pages#top"
 
