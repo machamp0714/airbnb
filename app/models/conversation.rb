@@ -4,15 +4,14 @@ class Conversation < ApplicationRecord
 
   has_many :messages, dependent: :destroy
 
-  validates :sender_id, uniqueness: true
-  validates :recipient_id, uniqueness: true
+  validates :sender_id, uniqueness: { scope: :recipient_id }
 
   def self.involving(user)
     where("sender_id = ? OR recipient_id = ?", user.id, user.id)
   end
 
   def self.between(user_A, user_B)
-    where("(sender_id = ? OR recipient_id = ?) OR (sender_id = ? OR recipient_id = ?)", user_A, user_B, user_B, user_A)
+    where("(sender_id = ? AND recipient_id = ?) OR (sender_id = ? AND recipient_id = ?)", user_A, user_B, user_B, user_A)
   end
 
 end

@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :guest_reviews, class_name: "GuestReview", foreign_key: "guest_id", dependent: :destroy
   has_many :host_reviews, class_name: "HostReview", foreign_key: "host_id", dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_one :setting, dependent: :destroy
   after_create :add_setting
