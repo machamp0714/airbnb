@@ -13,6 +13,8 @@ html
   body
     = render 'shared/nav'
     = render 'shared/message'
+    - if current_user
+      <input type="hidden" id="user_id" value="#{current_user.id}">
     
     .container
       = yield
